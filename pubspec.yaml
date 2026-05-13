@@ -1,5 +1,5 @@
-name: flutter_application_1
-description: "A new Flutter project."
+name: TetherUs
+description: "Cute Couples App."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.8
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.13.1
   flutter_test:
     sdk: flutter
 
@@ -58,9 +59,20 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+     - assets/images/animalCollection.png
+     - assets/images/furnitureSprite00.png
+     - assets/images/furnitureSprites01.png
+     - assets/images/MainDog.png
+     - assets/images/mainRoom.png
+     - assets/images/icon/TetherUsAppIcon00.png
+
+
+#icon for app
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/icon/TetherUsAppIcon00.png"
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
