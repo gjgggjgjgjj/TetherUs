@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:TetherUs/screens/first_timer.dart';
 import 'package:flutter/material.dart';
 import '../models/pet.dart';
 import '../widgets/pet_widget.dart';
@@ -174,7 +175,12 @@ class WelcomeScreen extends StatelessWidget {
                         width: double.infinity,
                         height: 65,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {       //redirects you to the first_timer screen
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => AboutTether())
+                            );
+                          },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFF84C857),
                             foregroundColor: Colors.white,

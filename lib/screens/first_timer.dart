@@ -14,7 +14,8 @@ class AboutTether extends StatelessWidget{
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('About TetherUs'),
+        backgroundColor: const Color.fromARGB(255, 253, 253, 253),
+        foregroundColor: Colors.black,
         centerTitle: true,
       ),
       body: PageView(

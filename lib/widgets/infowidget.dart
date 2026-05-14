@@ -18,9 +18,32 @@ class AboutClass extends StatelessWidget{
    return Container(
     width: screenwidth,
     height: screenheight,
-    color: Colors.blue,
+    color: const Color.fromARGB(255, 250, 250, 250),
     alignment: Alignment.center,
-    child: Text(thetext),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              thetext,
+              style: TextStyle(
+                color: Colors.black),),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "wow new line haha",
+              style: TextStyle(
+                color: Colors.black),
+              ),
+          ],
+        ),
+      ]
+    )
    ); 
   }
 }
