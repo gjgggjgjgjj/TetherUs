@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'package:TetherUs/screens/first_timer.dart';
+import 'package:TetherUs/ui/screens/first_timer.dart';
 import 'package:flutter/material.dart';
-import '../models/pet.dart';
+import '../../models/pet.dart';
 import '../widgets/pet_widget.dart';
 
 class WelcomeScreen extends StatelessWidget {
