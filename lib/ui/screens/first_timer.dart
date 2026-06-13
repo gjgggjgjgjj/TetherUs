@@ -28,11 +28,26 @@ class AboutTether extends StatelessWidget{
         ),*/ //makes it snap
           children: [
             //gonna have our premade widget here
-            AboutClass(thetext: "first widget"),
-            AboutClass(thetext: "second widget"),
-            AboutClass(thetext: "third widget"),
-            AboutClass(thetext: "fourth widget"),
-            AboutClass(thetext: "fifth widget"),
+            AboutClass(
+              thetext: "first widget",
+              imagepath: '../../assets/images/sidePeakAnimals.png',
+            ),
+            AboutClass(
+              thetext: "second widget",
+              imagepath: '../../assets/images/sidePeakAnimals.png',
+            ),
+            AboutClass(
+              thetext: "third widget",
+              imagepath: '../../assets/images/sidePeakAnimals.png',
+            ),
+            AboutClass(
+              thetext: "fourth widget",
+              imagepath: '../../assets/images/sidePeakAnimals.png',
+            ),
+            AboutClass(
+              thetext: "fifth widget",
+              imagepath: '../../assets/images/sidePeakAnimals.png',
+            ),
           ],
       ),
     );

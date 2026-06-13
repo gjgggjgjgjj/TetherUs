@@ -56,7 +56,7 @@ class Pet {
     cleanliness = 100;
   }
 
-  void go_to_bathroom() {
+  void goToBathroom() {
     bathroom = 100;
 
     cleanliness -= 10;
@@ -66,8 +66,10 @@ class Pet {
 
     play(0);
   }
+  // -------------------------------------------------------
 
   // Time-based pet simulation ---------------------------------
+  //later we could update with the users time
   void passTime({int minutes = 1}) {
     hunger = _clamp(hunger - minutes * 2);
     energy = _clamp(energy - minutes);
@@ -76,6 +78,7 @@ class Pet {
     happiness = _clamp(happiness - minutes);
   }
 
+  //bool functions to check the pet's needs
   bool needsBathroom() => bathroom < 30;
   bool isHungry() => hunger < 40;
   bool isSleepy() => energy < 35;

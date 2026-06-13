@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 class AboutClass extends StatelessWidget{
   //parameters go here
   final String thetext;
+  final String imagepath;
 
   const AboutClass({
     super.key,
     required this.thetext,
+    required this.imagepath, 
     });
 
   @override
@@ -18,7 +20,12 @@ class AboutClass extends StatelessWidget{
    return Container(
     width: screenwidth,
     height: screenheight,
-    color: const Color.fromARGB(255, 250, 250, 250),
+    decoration: BoxDecoration(
+      image: DecorationImage(
+        image: AssetImage(imagepath),
+        fit: BoxFit.cover,
+      ),
+    ),
     alignment: Alignment.center,
     child: Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
