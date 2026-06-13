@@ -17,7 +17,6 @@ import 'package:flutter/material.dart';
 ----------------------------------------------*/ 
 
 import 'ui/screens/home_screen.dart';
-import 'ui/screens/first_timer.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,8 +1,6 @@
-import 'dart:async';
 import 'package:TetherUs/ui/screens/first_timer.dart';
 import 'package:flutter/material.dart';
-import '../../models/pet.dart';
-import '../widgets/pet_widget.dart';
+import 'pet_room.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -88,6 +86,14 @@ class WelcomeScreen extends StatelessWidget {
 
                       const SizedBox(height: 36),
 
+                      Container(
+                        child: Column(
+                          children: [
+                            Image.asset('../../assets/images/animalCollectionBot.png'),
+                          ],
+                        ),
+                      ),
+                      /*
                       // Pets
                       Wrap(
                         alignment: WrapAlignment.center,
@@ -126,6 +132,7 @@ class WelcomeScreen extends StatelessWidget {
                           ),
                         ],
                       ),
+                      */
 
                       const SizedBox(height: 40),
 
@@ -203,7 +210,13 @@ class WelcomeScreen extends StatelessWidget {
 
                       // Login Button
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () { //redirects you to the main screen for now
+                        //as we don't have any accounts or authentication yet
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => PetRoom())
+                            );
+                        },
                         child: RichText(
                           text: const TextSpan(
                             style: TextStyle(
