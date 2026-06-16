@@ -16,23 +16,23 @@ class Pet {
   int cleanliness = 100;
 
   //get the stats -------------------------------------
-  String getHappiness() {
-    return 'Happiness: $happiness';
+  int getHappiness() {
+    return happiness;
   }
 
-  String getBathroom() {
-    return 'Bathroom: $bathroom';
+  int getBathroom() {
+    return bathroom;
   }
 
-  String getHunger() {
-    return 'Hunger: $hunger';
+  int getHunger() {
+    return hunger;
   }
 
-  String getEnergy() {
-    return 'Energy: $energy';
+  int getEnergy() {
+    return energy;
   }
-  String getCleanliness() {
-    return 'Cleanliness: $cleanliness';
+  int getCleanliness() {
+    return cleanliness;
   }
   // -------------------------------------------------------
 
@@ -101,19 +101,45 @@ class Pet {
 class PetWidget extends StatefulWidget {
   final String name; 
   final String imagepath;
+  final Pet pet;
 
   const PetWidget({
     super.key,
     required this.name, 
-    required this.imagepath
+    required this.imagepath,
+    required this.pet
   });
 
   @override
   State<PetWidget> createState() => _PetState();
 }
 
-class _PetState extends State<PetWidget> {
+class _PetState extends State<PetWidget> with TickerProviderStateMixin {
+  late AnimationController _controller;
   bool isTapped = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 10000), //full spin
+      vsync: this,
+    );
+  }
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _startSpin(){
+    _controller.repeat();
+  }
+
+  void _stopSpin(){
+    _controller.stop();
+    _controller.value = 0.0;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -124,35 +150,54 @@ class _PetState extends State<PetWidget> {
           onTapDown: (_) {
             setState(() {
               isTapped = true;
+              _startSpin();
             });
           },
           onTapUp: (_) {
             setState(() {
               isTapped = false;
+              _stopSpin();
             });
           },
           onTapCancel: () {
             setState(() {
               isTapped = false;
+              _stopSpin();
             });
           },
 
-          child: Image.asset(widget.imagepath),
+          child: RotationTransition(
+            turns: _controller,
+            child: Image.asset(widget.imagepath),
+          )
         ),
       
 
         if (isTapped) 
           Positioned(
             top: 0,
-            child: Row(
+            child: Column(
               children: [
-                Text("😍", style: TextStyle(fontSize: 32)),
-                SizedBox(width: 10),
-                Text("😂", style: TextStyle(fontSize: 32)),
-                SizedBox(width: 10),
-                Text("😮", style: TextStyle(fontSize: 32)),
-                SizedBox(width: 10),
-                Text("😡", style: TextStyle(fontSize: 32)),
+                Text(
+                  "STATS",
+                  style: TextStyle(
+                    color: Colors.black
+                  )
+                ),
+                Row(
+                  children: [           //each stat will call verticalStatBar
+                    //first stat
+                    VerticalStatBar(
+                      label: '😊',
+                      getValue: widget.pet.getHappiness,
+                    ),
+                    Text("😂", style: TextStyle(fontSize: 32)),
+                    SizedBox(width: 10),
+                    Text("😮", style: TextStyle(fontSize: 32)),
+                    SizedBox(width: 10),
+                    Text("😡", style: TextStyle(fontSize: 32)),
+                  ],
+                ),
               ],
             )
           )
@@ -163,4 +208,77 @@ class _PetState extends State<PetWidget> {
   }
 }
 
+//================================================================================
+// reusable vertical stat bar that reads directly from a Pet getter
+//this will directly be placed into the pet widget class above
+class VerticalStatBar extends StatelessWidget {
+  final String label;
+  final int Function() getValue;
+  final int maxValue;
+  final Color fillColor;
+  final Color backgroundColor;
+  final double width;
+  final double height;
+
+  const VerticalStatBar({
+    super.key,
+    required this.label,
+    required this.getValue,
+    this.maxValue = 100,
+    this.fillColor = const Color(0xFF84C857),
+    this.backgroundColor = const Color(0xFFEAEAEA),
+    this.width = 28,
+    this.height = 120,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final value = getValue().clamp(0, maxValue);
+    final normalizedValue = value / maxValue;
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          label,
+          style: const TextStyle(
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Container(
+          width: width,
+          height: height,
+          decoration: BoxDecoration(
+            color: backgroundColor,
+            borderRadius: BorderRadius.circular(14),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(14),
+            child: TweenAnimationBuilder<double>(
+              tween: Tween<double>(begin: 0, end: normalizedValue.toDouble()),
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeOut,
+              builder: (context, animatedValue, child) {
+                return Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    height: height * animatedValue,
+                    width: width,
+                    color: fillColor,
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
+        const SizedBox(height: 6),
+        Text(
+          '$value/$maxValue',
+          style: const TextStyle(fontSize: 12),
+        ),
+      ],
+    );
+  }
+}
 
