@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/pet_widgets.dart';
 
 class PetRoom extends StatelessWidget{
   const PetRoom({super.key});
@@ -15,10 +16,8 @@ class PetRoom extends StatelessWidget{
             fit: BoxFit.cover,
           ),
         ),
-        child: const Center(
-          child: Image(
-            image: AssetImage('assets/images/MainDog-Picsart-BackgroundRemover.png'),
-          ),
+        child: Center(
+          child: miloWidget,
         ),
       ),
     );

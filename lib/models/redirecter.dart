@@ -16,10 +16,13 @@ class Redirecter extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(context, screenName);
       },
-      child: Image.asset(
-        imagepath,
-        width: 10,
-        height: 10,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Image.asset(
+          imagepath,
+          width: 10,
+          height: 10,
+        ),
       ),
     );
   }

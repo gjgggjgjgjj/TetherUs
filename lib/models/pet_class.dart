@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+
+
 class Pet {
   final String name;
   final String imagePath;
@@ -91,3 +94,73 @@ class Pet {
   }
   // -------------------------------------------------------
 }
+//============================================================================
+//============================================================================
+
+//here is the widget class-----------------------------------------------
+class PetWidget extends StatefulWidget {
+  final String name; 
+  final String imagepath;
+
+  const PetWidget({
+    super.key,
+    required this.name, 
+    required this.imagepath
+  });
+
+  @override
+  State<PetWidget> createState() => _PetState();
+}
+
+class _PetState extends State<PetWidget> {
+  bool isTapped = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        GestureDetector(
+          onTapDown: (_) {
+            setState(() {
+              isTapped = true;
+            });
+          },
+          onTapUp: (_) {
+            setState(() {
+              isTapped = false;
+            });
+          },
+          onTapCancel: () {
+            setState(() {
+              isTapped = false;
+            });
+          },
+
+          child: Image.asset(widget.imagepath),
+        ),
+      
+
+        if (isTapped) 
+          Positioned(
+            top: 0,
+            child: Row(
+              children: [
+                Text("😍", style: TextStyle(fontSize: 32)),
+                SizedBox(width: 10),
+                Text("😂", style: TextStyle(fontSize: 32)),
+                SizedBox(width: 10),
+                Text("😮", style: TextStyle(fontSize: 32)),
+                SizedBox(width: 10),
+                Text("😡", style: TextStyle(fontSize: 32)),
+              ],
+            )
+          )
+        
+      ],
+    );
+    
+  }
+}
+
+
