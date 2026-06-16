@@ -11,13 +11,13 @@ class PetRoom extends StatelessWidget{
         height: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/mainRoom.png'),
+            image: AssetImage('assets/images/Main room.png'),
             fit: BoxFit.cover,
           ),
         ),
         child: const Center(
           child: Image(
-            image: AssetImage('../../assets/images/MainDog-Picsart-BackgroundRemover.png'),
+            image: AssetImage('assets/images/MainDog-Picsart-BackgroundRemover.png'),
           ),
         ),
       ),

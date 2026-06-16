@@ -33,20 +33,35 @@ class AboutClass extends StatelessWidget{
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              thetext,
-              style: TextStyle(
-                color: Colors.black),),
+            Container(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(5),
+              ),
+                child: Text(
+                  thetext,
+                  style: TextStyle(
+                    color: Colors.black),
+                  ),
+            ),
           ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "wow new line haha",
-              style: TextStyle(
-                color: Colors.black),
+            Container(
+              padding: EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
               ),
+                child: Text(
+                  "wow new line haha",
+                  style: TextStyle(
+                    color: Colors.black),
+                  ),
+            ),
           ],
         ),
       ]

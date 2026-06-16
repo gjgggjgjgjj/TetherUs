@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 /* gonna make some ui colors base off the primary #c997373 so redish 
@@ -18,7 +20,9 @@ import 'package:flutter/material.dart';
 
 import 'ui/screens/home_screen.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   runApp(const MyApp());
 }
 
@@ -27,9 +31,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final baseTheme = ThemeData.dark();
     return MaterialApp(
       title: 'TetherUs',
-      theme: ThemeData.dark(),
+      theme: baseTheme.copyWith(
+        textTheme: GoogleFonts.nunitoTextTheme(baseTheme.textTheme),
+        primaryTextTheme: GoogleFonts.nunitoTextTheme(baseTheme.primaryTextTheme),
+        appBarTheme: baseTheme.appBarTheme.copyWith(
+          titleTextStyle: GoogleFonts.nunito(
+            textStyle: baseTheme.appBarTheme.titleTextStyle,
+          ),
+        ),
+      ),
       home: const WelcomeScreen(),
     );
   }

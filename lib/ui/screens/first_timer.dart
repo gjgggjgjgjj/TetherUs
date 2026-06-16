@@ -13,11 +13,13 @@ class AboutTether extends StatelessWidget{
     );
 
     return Scaffold(
+      /*
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 253, 253, 253),
         foregroundColor: Colors.black,
         centerTitle: true,
       ),
+      */
       body: PageView(
         scrollDirection: Axis.horizontal,
         pageSnapping: true,
@@ -30,24 +32,26 @@ class AboutTether extends StatelessWidget{
             //gonna have our premade widget here
             AboutClass(
               thetext: "first widget",
-              imagepath: '../../assets/images/sidePeakAnimals.png',
+              imagepath: 'assets/images/sidePeakAnimals.png',
             ),
+            /*            -----------------this is older version of using the about section
             AboutClass(
               thetext: "second widget",
-              imagepath: '../../assets/images/sidePeakAnimals.png',
+              imagepath: 'assets/images/sidePeakAnimals.png',
             ),
             AboutClass(
               thetext: "third widget",
-              imagepath: '../../assets/images/sidePeakAnimals.png',
+              imagepath: 'assets/images/sidePeakAnimals.png',
             ),
             AboutClass(
               thetext: "fourth widget",
-              imagepath: '../../assets/images/sidePeakAnimals.png',
+              imagepath: 'assets/images/sidePeakAnimals.png',
             ),
             AboutClass(
               thetext: "fifth widget",
-              imagepath: '../../assets/images/sidePeakAnimals.png',
+              imagepath: 'assets/images/sidePeakAnimals.png',
             ),
+            */
           ],
       ),
     );

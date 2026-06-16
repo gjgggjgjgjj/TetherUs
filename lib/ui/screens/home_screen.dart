@@ -64,7 +64,6 @@ class WelcomeScreen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 42,
                               fontWeight: FontWeight.w900,
-                              fontFamily: 'Nunito',
                             ),
                             children: [
                               TextSpan(
@@ -89,7 +88,7 @@ class WelcomeScreen extends StatelessWidget {
                       Container(
                         child: Column(
                           children: [
-                            Image.asset('../../assets/images/animalCollectionBot.png'),
+                            Image.asset('assets/images/animalCollectionBot.png'),
                           ],
                         ),
                       ),
