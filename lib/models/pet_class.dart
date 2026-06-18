@@ -191,11 +191,18 @@ class _PetState extends State<PetWidget> with TickerProviderStateMixin {
                       label: '😊',
                       getValue: widget.pet.getHappiness,
                     ),
-                    Text("😂", style: TextStyle(fontSize: 32)),
-                    SizedBox(width: 10),
-                    Text("😮", style: TextStyle(fontSize: 32)),
-                    SizedBox(width: 10),
-                    Text("😡", style: TextStyle(fontSize: 32)),
+                    VerticalStatBar(
+                      label: '🍕',
+                      getValue: widget.pet.getHunger,
+                    ),
+                    VerticalStatBar(
+                      label: "⚡",
+                      getValue: widget.pet.getEnergy
+                    ),
+                    VerticalStatBar(
+                      label: '🚿', 
+                      getValue: widget.pet.getCleanliness
+                    ),
                   ],
                 ),
               ],
