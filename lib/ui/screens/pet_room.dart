@@ -23,7 +23,12 @@ class PetRoom extends StatelessWidget{
                 child: miloWidget,
               ),
             ),
-            kitchenDir,
+            Row(
+              children: [
+                kitchenDir,
+                outdoorDir,
+              ],
+            ),
           ],
         ),
       ),

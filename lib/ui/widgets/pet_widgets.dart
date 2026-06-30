@@ -1,5 +1,6 @@
 import 'package:TetherUs/models/redirecter.dart';
 import '../screens/kitchen.dart';
+import '../screens/outdoor.dart';
 import '../../models/pet_class.dart';
 
 
@@ -21,4 +22,9 @@ var miloWidget = PetWidget(
 var kitchenDir = Redirecter(
   imagepath: "assets/images/kitchenIcon.png",
   screen: (context) => const Kitchen(),
+);
+
+var outdoorDir = Redirecter(
+  imagepath: "assets/images/outoor_icon.png",
+  screen: (context) => const Outdoor(),
 );

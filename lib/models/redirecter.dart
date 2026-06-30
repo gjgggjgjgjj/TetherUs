@@ -8,13 +8,13 @@ class Redirecter extends StatelessWidget {
   final double bottomPadding;
 
   const Redirecter({
-    Key? key,
+    super.key,
     required this.imagepath,
     required this.screen,
     this.width = 150,
     this.height = 150,
     this.bottomPadding = 20,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
