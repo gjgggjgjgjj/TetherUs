@@ -16,8 +16,15 @@ class PetRoom extends StatelessWidget{
             fit: BoxFit.cover,
           ),
         ),
-        child: Center(
-          child: miloWidget,
+        child: Column(
+          children: [
+            Expanded(
+              child: Center(
+                child: miloWidget,
+              ),
+            ),
+            kitchenDir,
+          ],
         ),
       ),
     );
