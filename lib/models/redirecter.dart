@@ -68,7 +68,7 @@ class WidgetRedirecter extends StatelessWidget {
           builder: (ctx) {
             final screenH = MediaQuery.of(ctx).size.height;
             return Dialog(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
               insetPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
               child: SizedBox(
                 height: screenH * 0.5, // covers about half the screen
@@ -81,7 +81,7 @@ class WidgetRedirecter extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.only(bottom: bottomPadding),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(20),
           child: Image.asset(imagepath, width: width, height: height, fit: BoxFit.cover),
         ),
       ),

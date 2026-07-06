@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/pet_widgets.dart';
+import 'outdoor.dart';
+import 'kitchen.dart';
 
 class PetRoom extends StatefulWidget {
   const PetRoom({super.key});
@@ -10,19 +12,29 @@ class PetRoom extends StatefulWidget {
 
 class _PetRoomState extends State<PetRoom> {
   late final PageController _controller;
-  static const _pages = [
-    'assets/images/Main room.png',
-    'assets/images/outdoor_backdrop.png',
-    'assets/images/kitchen_backdrop.png',
+
+  // Provide full-widget pages. Replace placeholders with your actual widgets
+  // (for example, `Outdoor()` and `Kitchen()` are imported above).
+  final List<Widget> _pageWidgets = [
+    // Main room as a simple decorated box using the original background image
+    SizedBox.expand(
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          image: DecorationImage(image: const AssetImage('assets/images/Main room.png'), fit: BoxFit.cover),
+        ),
+      ),
+    ),
+    // Use the full-screen widgets if desired (they return Scaffold currently).
+    Outdoor(),
+    Kitchen(),
   ];
 
-  // start in the middle of a large range so modulo mapping appears infinite
   static const int _initialPageMultiplier = 1000;
 
   @override
   void initState() {
     super.initState();
-    _controller = PageController(initialPage: _pages.length * _initialPageMultiplier);
+    _controller = PageController(initialPage: _pageWidgets.length * _initialPageMultiplier);
   }
 
   @override
@@ -36,30 +48,17 @@ class _PetRoomState extends State<PetRoom> {
     return Scaffold(
       body: Stack(
         children: [
-          // PageView as the changing background
+          // PageView rendering widgets full-screen
           PageView.builder(
             controller: _controller,
-            scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              final pageIndex = index % _pages.length;
-              return Container(
-                width: double.infinity,
-                height: double.infinity,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(_pages[pageIndex]),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              );
+              final pageIndex = index % _pageWidgets.length;
+              return SizedBox.expand(child: _pageWidgets[pageIndex]);
             },
           ),
 
           // Static centered Milo widget (ignores pointer to allow swipes through)
-          IgnorePointer(
-            ignoring: true,
-            child: Center(child: miloWidget),
-          ),
+          Center(child: miloWidget),
 
           // Controls row at bottom (kept interactive)
           Positioned(
@@ -83,11 +82,8 @@ class _PetRoomState extends State<PetRoom> {
   }
 
   void _jumpToPage(int pageIndex) {
-    // Jump to the nearest page with the requested pageIndex (modulo mapping)
-    final current = _controller.page?.round() ?? _controller.initialPage;
-    // find the closest target page that maps to pageIndex
-    int target = current - (current % _pages.length) + pageIndex;
-    // animate to target
+    final current = (_controller.page ?? _controller.initialPage).round();
+    final int target = current - (current % _pageWidgets.length) + pageIndex;
     _controller.animateToPage(target, duration: const Duration(milliseconds: 400), curve: Curves.easeInOut);
   }
 }

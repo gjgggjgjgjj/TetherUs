@@ -16,9 +16,6 @@ class Kitchen extends StatelessWidget{
             fit: BoxFit.cover,
           ),
         ),
-        child: Center(
-          child: miloWidget,
-        ),
       ),
     );
   }
