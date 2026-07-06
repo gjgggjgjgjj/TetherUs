@@ -80,7 +80,7 @@ class AboutTether extends StatelessWidget {
                 const _InfoSection(
                   title: 'Consistency matters',
                   body:
-                      'Small, regular actions compound. The more you use Tether, the more youâ€™ll notice improved understanding and closeness.',
+                      "Small, regular actions compound. The more you use Tether, the more youâ€™ll notice improved understanding and closeness.",
                 ),
 
                 const SizedBox(height: 12),
@@ -111,7 +111,7 @@ class AboutTether extends StatelessWidget {
                     _FeatureCard(
                       icon: Icons.emoji_emotions,
                       title: 'Mini Activities',
-                      subtitle: 'Fun, guided exercises to spark connection in 5â€“10 minutes.',
+                      subtitle: 'Fun, guided exercises to spark connection in minutes.',
                     ),
                     SizedBox(height: 10),
                     _FeatureCard(

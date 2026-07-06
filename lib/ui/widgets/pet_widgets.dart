@@ -19,12 +19,12 @@ var miloWidget = PetWidget(
 
 
 //widgets around the pet to be redirected
-var kitchenDir = Redirecter(
+var kitchenDir = WidgetRedirecter(
   imagepath: "assets/images/kitchenIcon.png",
-  screen: (context) => const Kitchen(),
+  popup: (context) => const Kitchen(),
 );
 
-var outdoorDir = Redirecter(
+var outdoorDir = WidgetRedirecter(
   imagepath: "assets/images/outoor_icon.png",
-  screen: (context) => const Outdoor(),
+  popup: (context) => const Outdoor(),
 );
