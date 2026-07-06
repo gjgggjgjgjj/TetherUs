@@ -16,6 +16,7 @@ import 'package:google_fonts/google_fonts.dart';
 900:  683434 
 950:  371818 
 
+comment is a lie as we want green for the app now
 ----------------------------------------------*/ 
 
 import 'ui/screens/home_screen.dart';
@@ -31,18 +32,27 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final baseTheme = ThemeData.dark();
+    // Seed a light color scheme with a pleasant green accent
+    const Color seedGreen = Color(0xFF3EB869);
+    final colorScheme = ColorScheme.fromSeed(seedColor: seedGreen, brightness: Brightness.light);
+
+    final baseTheme = ThemeData.from(colorScheme: colorScheme, textTheme: GoogleFonts.nunitoTextTheme(), useMaterial3: true).copyWith(
+      appBarTheme: AppBarTheme(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.black87),
+        titleTextStyle: GoogleFonts.nunito(textStyle: const TextStyle(color: Colors.black87, fontSize: 20, fontWeight: FontWeight.w600)),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(backgroundColor: seedGreen, foregroundColor: Colors.white),
+      ),
+      iconTheme: const IconThemeData(color: seedGreen),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: seedGreen),
+    );
+
     return MaterialApp(
       title: 'TetherUs',
-      theme: baseTheme.copyWith(
-        textTheme: GoogleFonts.nunitoTextTheme(baseTheme.textTheme),
-        primaryTextTheme: GoogleFonts.nunitoTextTheme(baseTheme.primaryTextTheme),
-        appBarTheme: baseTheme.appBarTheme.copyWith(
-          titleTextStyle: GoogleFonts.nunito(
-            textStyle: baseTheme.appBarTheme.titleTextStyle,
-          ),
-        ),
-      ),
+      theme: baseTheme,
       home: const WelcomeScreen(),
     );
   }
