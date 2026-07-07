@@ -2,6 +2,7 @@ import 'package:TetherUs/models/redirecter.dart';
 import '../screens/kitchen.dart';
 import '../screens/outdoor.dart';
 import '../../models/pet_class.dart';
+import 'messages.dart';
 
 
 //first making milo
@@ -11,11 +12,13 @@ var milo = Pet(
   imagePath: 'assets/images/MainDog-Picsart-BackgroundRemover.png'
 );
 
+//pet widgets
 var miloWidget = PetWidget(
   name: "Milo", 
   imagepath: 'assets/images/MainDog-Picsart-BackgroundRemover.png',
   pet: milo
 );
+
 
 
 //widgets around the pet to be redirected
@@ -27,4 +30,10 @@ var kitchenDir = WidgetRedirecter(
 var outdoorDir = WidgetRedirecter(
   imagepath: "assets/images/outoor_icon.png",
   popup: (context) => const Outdoor(),
+);
+
+var messageDir = WidgetRedirecter(
+  imagepath: "assets/icons/message-icon.png", 
+  popup: (context) => const ChatScreen(), //this isn't implemented yet but for untill we have
+  //the widget 
 );

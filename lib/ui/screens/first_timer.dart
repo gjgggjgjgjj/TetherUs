@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../database/auth_service.dart';
 
 const Color _accentGreen = Color(0xFF3EB869);
 
@@ -252,6 +253,31 @@ class AccountCreationScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+
+//widget that connects to the firebase service
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () async {
+            final user = await AuthService().signInWithGoogle();
+
+            if (user != null) {
+              // Navigate to your home screen
+              Navigator.pushReplacementNamed(context, '/home');
+            }
+          },
+          child: const Text("Sign in with Google"),
         ),
       ),
     );
