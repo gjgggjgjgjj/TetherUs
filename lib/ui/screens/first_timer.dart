@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../database/auth_service.dart';
+import 'login_signup.dart';
 
 const Color _accentGreen = Color(0xFF3EB869);
 
@@ -168,7 +169,7 @@ class AboutTether extends StatelessWidget {
   }
 
   void _goToAccountCreation(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AccountCreationScreen()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (_) => LoginScreenTest()));
   }
 }
 
@@ -230,29 +231,6 @@ class _FeatureCard extends StatelessWidget {
               ),
             )
           ],
-        ),
-      ),
-    );
-  }
-}
-
-/// Simple placeholder for account creation route
-class AccountCreationScreen extends StatelessWidget {
-  const AccountCreationScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Create Account')),
-      body: const SafeArea(
-        child: Center(
-          child: Padding(
-            padding: EdgeInsets.all(24.0),
-            child: Text(
-              'Account creation placeholder\n\nFill this screen with your signup flow.',
-              textAlign: TextAlign.center,
-            ),
-          ),
         ),
       ),
     );

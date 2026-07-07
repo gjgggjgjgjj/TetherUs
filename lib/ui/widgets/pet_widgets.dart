@@ -32,8 +32,11 @@ var outdoorDir = WidgetRedirecter(
   popup: (context) => const Outdoor(),
 );
 
+/*
 var messageDir = WidgetRedirecter(
   imagepath: "assets/icons/message-icon.png", 
-  popup: (context) => const ChatScreen(), //this isn't implemented yet but for untill we have
-  //the widget 
+  popup: (context) => const ChatScreen(
+    chatId: ,
+  ), //the widget 
 );
+*/  //will fix this later
