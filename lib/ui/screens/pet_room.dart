@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../widgets/pet_widgets.dart';
 import 'outdoor.dart';
 import 'kitchen.dart';
+import 'bedroom.dart';
 
 class PetRoom extends StatefulWidget {
   const PetRoom({super.key});
@@ -27,6 +28,7 @@ class _PetRoomState extends State<PetRoom> {
     // Use the full-screen widgets if desired (they return Scaffold currently).
     Outdoor(),
     Kitchen(),
+    Bedroom(),
   ];
 
   static const int _initialPageMultiplier = 1000;

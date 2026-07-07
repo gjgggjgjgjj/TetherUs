@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Kitchen extends StatelessWidget{
-  const Kitchen({super.key});
+class Bedroom extends StatelessWidget{
+  const Bedroom({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class Kitchen extends StatelessWidget{
         height: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/kitchen_backdrop.png'),
+            image: AssetImage('assets/images/bedBackdrop.png'),
             fit: BoxFit.cover,
           ),
         ),

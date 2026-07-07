@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../widgets/pet_widgets.dart';
 
 class Outdoor extends StatelessWidget{
   const Outdoor({super.key});
