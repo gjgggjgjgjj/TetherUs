@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "31766616131",
+    "project_id": "tetherus-0",
+    "storage_bucket": "tetherus-0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:31766616131:android:59d8a0cfa28743985d9cf6",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIT14w8wFg3qbKgVCBgWZXPzMq7fGvCyA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
