@@ -19,7 +19,32 @@ Future<bool> addUser(String uid) async{
     'createdAt': FieldValue.serverTimestamp(),
     'uid': uid,
     'username': "default",
+    'friends': [],
+    'couple': null,
   });
+
+  return true;
+}
+
+
+//checks if username exists and rejects or updates based on that
+Future<bool> changeUserName(String uid, String username) async{
+  final result = await FirebaseFirestore.instance
+    .collection('users')
+    .where('username', isEqualTo: username)
+    .limit(1)
+    .get();
+
+  if (result.docs.isNotEmpty) {
+     return false;
+  }
+
+  await FirebaseFirestore.instance
+    .collection('users')
+    .doc(uid)
+    .set({
+      'username': username,
+    }, SetOptions(merge: true));
 
   return true;
 }

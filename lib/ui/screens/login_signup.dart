@@ -31,7 +31,10 @@ class LoginScreenTest extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => PetRoom()),
               );
               //using adduser function in read_write.dart
-              addUser(uid);
+              bool exists = addUser(uid);
+              if (!exists) {
+                
+              }
 
 
             } else {
