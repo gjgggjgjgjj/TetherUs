@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../database/auth_service.dart';
+import '../../database/read_write.dart';
 import 'pet_room.dart';
 
 class LoginScreenTest extends StatelessWidget {
@@ -29,6 +30,9 @@ class LoginScreenTest extends StatelessWidget {
                 context,
                 MaterialPageRoute(builder: (context) => PetRoom()),
               );
+              //using adduser function in read_write.dart
+              addUser(uid);
+
 
             } else {
               print('Sign in failed or canceled.');
