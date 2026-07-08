@@ -10,6 +10,7 @@ Future<bool> addUser(String uid) async{
 
   if (doc.exists) {
     // User already exists in Firestore
+    print("already exists not adding uid");
     return false;
   }
 
@@ -17,6 +18,7 @@ Future<bool> addUser(String uid) async{
   await docRef.set({
     'createdAt': FieldValue.serverTimestamp(),
     'uid': uid,
+    'username': "default",
   });
 
   return true;
