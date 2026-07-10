@@ -6,6 +6,12 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
 
+  Future<void> _initializeGoogleSignIn() async {
+    await _googleSignIn.initialize(
+      serverClientId: '31766616131-htr311lf0jl92n86sfq0d0c9hka3dtgh.apps.googleusercontent.com',
+    );
+  }
+
   Future<User?> signInWithGoogle() async {
     try {
       if (kIsWeb) {
@@ -17,6 +23,8 @@ class AuthService {
             await _auth.signInWithPopup(googleProvider);
         return userCredential.user;
       }
+
+      await _initializeGoogleSignIn();
 
       final GoogleSignInAccount? googleUser = await _googleSignIn.authenticate();
       if (googleUser == null) return null;
