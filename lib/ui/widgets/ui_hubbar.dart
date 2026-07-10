@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'messages.dart';
 
 class GameProfileHub extends StatelessWidget {
 
@@ -18,7 +19,8 @@ class GameProfileHub extends StatelessWidget {
           children: [
             Container(
               height: 90,
-              width: 420,
+              width: double.infinity,
+              constraints: const BoxConstraints(maxWidth: 420),
               decoration: BoxDecoration(
                 // Wooden color gradient
                 gradient: const LinearGradient(
@@ -53,33 +55,38 @@ class GameProfileHub extends StatelessWidget {
                         child: Row(
                           children: [
                             // Heart Icon
-                            const Icon(Icons.favorite, color: Color(0xFFFF6B6B), size: 28),
+                            // const Icon(Icons.favorite, color: Color(0xFFFF6B6B), size: 28),
                             const SizedBox(width: 8),
                             // User Name
-                            const Text(
-                              'David',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF4A2E12),
-                                fontFamily: 'CasualGameFont', // Replace with your game font
+                            const Flexible(
+                              child: Text(
+                                'David',
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFF4A2E12),
+                                  fontFamily: 'CasualGameFont',
+                                ),
                               ),
                             ),
-                            const Spacer(),
+                            const SizedBox(width: 8),
                             // Level Tag
                             Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                               decoration: BoxDecoration(
                                 color: const Color(0xFFFF6B6B),
                                 borderRadius: BorderRadius.circular(15),
                                 border: Border.all(color: const Color(0xFFE54747), width: 2),
                               ),
                               child: const Row(
+                                mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Icon(Icons.favorite, color: Color(0xFFFFFBE6), size: 12),
+                                  // Icon(Icons.favorite, color: Color(0xFFFFFBE6), size: 12),
                                   SizedBox(width: 4),
                                   Text(
-                                    'Lv.14',
+                                    '14',
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
@@ -93,7 +100,7 @@ class GameProfileHub extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 12),
+                    const SizedBox(width: 8),
                     // Settings/Gear Button
                     const _SettingsButton(),
                   ],
@@ -104,7 +111,7 @@ class GameProfileHub extends StatelessWidget {
             // Avatar (Overlapping on the left)
             Positioned(
               left: -10,
-              top: -15,
+              top: -8,
               child: const _AvatarWidget(),
             ),
           ],
@@ -122,26 +129,67 @@ class GameProfileHub extends StatelessWidget {
         // 3. The Bottom Row of Menu Buttons
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _MenuButton(
-                imagepath: 'assets/images/message_icon.png', 
-                badgeCount: 1,
-              ),
-              _MenuButton(
-                imagepath: 'assets/images/outoor_icon.png'
-              ),
-              _MenuButton(
-                imagepath: 'assets/images/outoor_icon.png'
-              ),
-              _MenuButton(
-                imagepath: 'assets/images/outoor_icon.png'
-              ),
-              _MenuButton(
-                imagepath: 'assets/images/outoor_icon.png'
-              ),
-            ],
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final buttonSize = ((constraints.maxWidth - 48) / 5).clamp(48.0, 72.0);
+
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: buttonSize,
+                    height: buttonSize,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ChatScreen(chatId: 'default'),
+                          ),
+                        );
+                      },
+                      child: _MenuButton(
+                        imagepath: 'assets/images/message_icon.png',
+                        badgeCount: 1,
+                        size: buttonSize,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: buttonSize,
+                    height: buttonSize,
+                    child: _MenuButton(
+                      imagepath: 'assets/images/outoor_icon.png',
+                      size: buttonSize,
+                    ),
+                  ),
+                  SizedBox(
+                    width: buttonSize,
+                    height: buttonSize,
+                    child: _MenuButton(
+                      imagepath: 'assets/images/outoor_icon.png',
+                      size: buttonSize,
+                    ),
+                  ),
+                  SizedBox(
+                    width: buttonSize,
+                    height: buttonSize,
+                    child: _MenuButton(
+                      imagepath: 'assets/images/outoor_icon.png',
+                      size: buttonSize,
+                    ),
+                  ),
+                  SizedBox(
+                    width: buttonSize,
+                    height: buttonSize,
+                    child: _MenuButton(
+                      imagepath: 'assets/images/outoor_icon.png',
+                      size: buttonSize,
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
         ),
       ],
@@ -218,11 +266,13 @@ class _HangingLink extends StatelessWidget {
 class _MenuButton extends StatelessWidget {
   final String imagepath;
   final int badgeCount;
+  final double size;
 
   const _MenuButton({
     super.key,
     required this.imagepath,
     this.badgeCount = 0,
+    this.size = 72,
   });
 
   @override
@@ -231,8 +281,8 @@ class _MenuButton extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         Container(
-          width: 72,
-          height: 72,
+          width: size,
+          height: size,
           decoration: BoxDecoration(
             color: const Color(0xFFFFFBE6),
             borderRadius: BorderRadius.circular(18),
@@ -246,13 +296,12 @@ class _MenuButton extends StatelessWidget {
             ],
           ),
           child: Padding(
-            padding: const EdgeInsets.all(6.0),
+            padding: EdgeInsets.all(size * 0.08),
             child: Center(
-              // Replace placeholder with: Image.asset(iconPath)
               child: Image.asset(
                 imagepath,
-                width: 72,
-                height: 72,
+                width: size * 0.8,
+                height: size * 0.8,
                 fit: BoxFit.contain,
               ),
             ),
