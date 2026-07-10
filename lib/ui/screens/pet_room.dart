@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/pet_widgets.dart';
 import 'outdoor.dart';
+import '../widgets/ui_hubbar.dart';
 import 'kitchen.dart';
 import 'bedroom.dart';
 
@@ -59,6 +60,8 @@ class _PetRoomState extends State<PetRoom> {
             },
           ),
 
+          //place ui on top of screen
+          Positioned(child: GameProfileHub()),
           // Static centered Milo widget (ignores pointer to allow swipes through)
           Center(child: miloWidget),
 
