@@ -20,7 +20,7 @@ Future<bool> addUser(String uid) async{
     'uid': uid,
     'username': "default",
     'friends': [],
-    'couple': null,
+    'cupple': null,
   });
 
   return true;
@@ -49,3 +49,16 @@ Future<bool> changeUserName(String uid, String username) async{
   return true;
 }
 
+
+Future<String?> getUsername() async {
+  final uid = FirebaseAuth.instance.currentUser!.uid;
+
+  final doc = await FirebaseFirestore.instance
+      .collection('users')
+      .doc(uid)
+      .get();
+
+  if (!doc.exists) return null;
+
+  return doc.data()?['username'];
+}

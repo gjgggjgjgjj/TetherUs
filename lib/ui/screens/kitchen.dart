@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/pet_widgets.dart';
 
 class Kitchen extends StatelessWidget{
   const Kitchen({super.key});
@@ -14,6 +15,25 @@ class Kitchen extends StatelessWidget{
             image: AssetImage('assets/images/kitchen_backdrop.png'),
             fit: BoxFit.cover,
           ),
+        ),
+        child: Stack(
+          children: [
+            Center(),
+            Positioned(
+                left: 0,
+                right: 0,
+                bottom: 24,
+                child: Center(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      kitchenDir,
+                      outdoorDir,
+                    ],
+                  ),
+                ),
+            ),
+          ],
         ),
       ),
     );

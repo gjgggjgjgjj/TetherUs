@@ -1,3 +1,5 @@
+import 'package:TetherUs/database/read_write.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../widgets/pet_widgets.dart';
 import 'outdoor.dart';
@@ -19,13 +21,33 @@ class _PetRoomState extends State<PetRoom> {
   // (for example, `Outdoor()` and `Kitchen()` are imported above).
   final List<Widget> _pageWidgets = [
     // Main room as a simple decorated box using the original background image
-    SizedBox.expand(
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          image: DecorationImage(image: const AssetImage('assets/images/Main room.png'), fit: BoxFit.cover),
+    Stack(
+      children: [
+        SizedBox.expand(
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              image: DecorationImage(image: const AssetImage('assets/images/Main room.png'), fit: BoxFit.cover),
+            ),
+          ),
         ),
-      ),
+
+        Positioned(
+            left: 0,
+            right: 0,
+            bottom: 24,
+            child: Center(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  kitchenDir,
+                  outdoorDir,
+                ],
+              ),
+            ),
+        ),
+      ],
     ),
+      
     // Use the full-screen widgets if desired (they return Scaffold currently).
     Outdoor(),
     Kitchen(),
@@ -61,7 +83,15 @@ class _PetRoomState extends State<PetRoom> {
           ),
 
           //place ui on top of screen
-          Positioned(child: GameProfileHub()),
+          FutureBuilder<String?>(
+            future: getUsername(),
+            builder: (context, snapshot) {
+              final name = snapshot.connectionState == ConnectionState.done
+                  ? (snapshot.data ?? 'Guest')
+                  : 'Loading...';
+              return GameProfileHub(uid: name);
+            },
+          ),
           // Static centered Milo widget (ignores pointer to allow swipes through)
           Center(child: miloWidget),
 
@@ -74,9 +104,9 @@ class _PetRoomState extends State<PetRoom> {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  GestureDetector(onTap: () => _jumpToPage(2), child: kitchenDir),
-                  const SizedBox(width: 12),
-                  GestureDetector(onTap: () => _jumpToPage(1), child: outdoorDir),
+                  // GestureDetector(onTap: () => _jumpToPage(2), child: kitchenDir),
+                  // const SizedBox(width: 12),
+                  // GestureDetector(onTap: () => _jumpToPage(1), child: outdoorDir),
                 ],
               ),
             ),

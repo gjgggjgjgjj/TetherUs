@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/pet_widgets.dart';
 
 class Outdoor extends StatelessWidget{
   const Outdoor({super.key});
@@ -15,6 +16,25 @@ class Outdoor extends StatelessWidget{
             fit: BoxFit.cover,
           ),
         ),
+        child: Stack(
+            children: [
+            Center(),
+            Positioned(
+                left: 0,
+                right: 0,
+                bottom: 24,
+                child: Center(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      kitchenDir,
+                      outdoorDir,
+                    ],
+                  ),
+                ),
+            ),
+          ],
+        )
       ),
     );
   }

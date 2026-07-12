@@ -1,15 +1,21 @@
+import 'package:TetherUs/database/read_write.dart';
 import 'package:flutter/material.dart';
 
 import 'messages.dart';
 
 class GameProfileHub extends StatelessWidget {
-
+  final String uid;
   const GameProfileHub({
     super.key,
+    required this.uid,
   });
 
   @override
   Widget build(BuildContext context) {
+    final displayName =  uid.isEmpty
+        ? 'Guest'
+        : (uid.length > 10 ? '${uid.substring(0, 10)}...' : uid);
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -58,12 +64,12 @@ class GameProfileHub extends StatelessWidget {
                             // const Icon(Icons.favorite, color: Color(0xFFFF6B6B), size: 28),
                             const SizedBox(width: 8),
                             // User Name
-                            const Flexible(
+                            Flexible(
                               child: Text(
-                                'David',
+                                displayName,
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: Color(0xFF4A2E12),
@@ -149,7 +155,7 @@ class GameProfileHub extends StatelessWidget {
                         );
                       },
                       child: _MenuButton(
-                        imagepath: 'assets/images/message_icon.png',
+                        imagepath: 'assets/images/message-icon.png',
                         badgeCount: 1,
                         size: buttonSize,
                       ),
@@ -295,15 +301,13 @@ class _MenuButton extends StatelessWidget {
               )
             ],
           ),
-          child: Padding(
-            padding: EdgeInsets.all(size * 0.08),
-            child: Center(
-              child: Image.asset(
-                imagepath,
-                width: size * 0.8,
-                height: size * 0.8,
-                fit: BoxFit.contain,
-              ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(14),
+            child: Image.asset(
+              imagepath,
+              width: size,
+              height: size,
+              fit: BoxFit.cover,
             ),
           ),
         ),
