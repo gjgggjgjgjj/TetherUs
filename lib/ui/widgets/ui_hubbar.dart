@@ -165,7 +165,7 @@ class GameProfileHub extends StatelessWidget {
                     width: buttonSize,
                     height: buttonSize,
                     child: _MenuButton(
-                      imagepath: 'assets/images/outoor_icon.png',
+                      imagepath: 'assets/images/friends_icon.png',
                       size: buttonSize,
                     ),
                   ),
@@ -173,7 +173,7 @@ class GameProfileHub extends StatelessWidget {
                     width: buttonSize,
                     height: buttonSize,
                     child: _MenuButton(
-                      imagepath: 'assets/images/outoor_icon.png',
+                      imagepath: 'assets/images/training_icon.png',
                       size: buttonSize,
                     ),
                   ),
@@ -181,7 +181,7 @@ class GameProfileHub extends StatelessWidget {
                     width: buttonSize,
                     height: buttonSize,
                     child: _MenuButton(
-                      imagepath: 'assets/images/outoor_icon.png',
+                      imagepath: 'assets/images/growth_icon.png',
                       size: buttonSize,
                     ),
                   ),
@@ -189,7 +189,7 @@ class GameProfileHub extends StatelessWidget {
                     width: buttonSize,
                     height: buttonSize,
                     child: _MenuButton(
-                      imagepath: 'assets/images/outoor_icon.png',
+                      imagepath: 'assets/images/shop_icon.png',
                       size: buttonSize,
                     ),
                   ),

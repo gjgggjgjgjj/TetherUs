@@ -20,7 +20,7 @@ Future<bool> addUser(String uid) async{
     'uid': uid,
     'username': "default",
     'friends': [],
-    'cupple': null,
+    'couple': null,
   });
 
   return true;
