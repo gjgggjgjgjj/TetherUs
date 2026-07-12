@@ -15,7 +15,7 @@ class GameProfileHub extends StatelessWidget {
   Widget build(BuildContext context) {
     final displayName =  username.isEmpty
         ? 'Guest'
-        : (username.length > 10 ? '${username.substring(0, 10)}...' : username);
+        : (username.length > 14 ? '${username.substring(0, 14)}...' : username);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -61,7 +61,6 @@ class GameProfileHub extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 12),
                         child: Row(
                           children: [
-                            // Heart Icon
                             // const Icon(Icons.favorite, color: Color(0xFFFF6B6B), size: 28),
                             const SizedBox(width: 8),
                             // User Name
@@ -194,7 +193,7 @@ class GameProfileHub extends StatelessWidget {
                         );
                       },
                       child: _MenuButton(
-                        imagepath: 'assets/images/growth_icon.png',
+                        imagepath: 'assets/images/growth_icon01.png',
                         size: buttonSize,
                       ),
                     ),
@@ -269,7 +268,17 @@ class _SettingsButton extends StatelessWidget {
         shape: BoxShape.circle,
         border: Border.all(color: const Color(0xFFB06A24), width: 3),
       ),
-      child: const Icon(Icons.settings, color: Color(0xFF8A4F13), size: 26),
+      child: GestureDetector(
+        onTap: (){
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => MessagesDashboard()
+            ),
+          );
+        },
+        child: const Icon(Icons.settings, color: Color(0xFF8A4F13), size: 26),
+      ),
     );
   }
 }
