@@ -1,20 +1,21 @@
 import 'package:TetherUs/database/read_write.dart';
+import 'package:TetherUs/ui/screens/couple_message.dart';
 import 'package:flutter/material.dart';
 
 import 'messages.dart';
 
 class GameProfileHub extends StatelessWidget {
-  final String uid;
+  final String username;
   const GameProfileHub({
     super.key,
-    required this.uid,
+    required this.username,
   });
 
   @override
   Widget build(BuildContext context) {
-    final displayName =  uid.isEmpty
+    final displayName =  username.isEmpty
         ? 'Guest'
-        : (uid.length > 10 ? '${uid.substring(0, 10)}...' : uid);
+        : (username.length > 10 ? '${username.substring(0, 10)}...' : username);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -128,19 +129,20 @@ class GameProfileHub extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 32.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: List.generate(5, (_) => const _HangingLink()),
+            children: List.generate(4, (_) => const _HangingLink()),
           ),
         ),
 
         // 3. The Bottom Row of Menu Buttons
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          padding: const EdgeInsets.symmetric(horizontal: 32.0),
           child: LayoutBuilder(
             builder: (context, constraints) {
-              final buttonSize = ((constraints.maxWidth - 48) / 5).clamp(48.0, 72.0);
+              const buttonCount = 4;
+              final buttonSize = ((constraints.maxWidth - 64) / buttonCount).clamp(48.0, 72.0);
 
               return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   SizedBox(
                     width: buttonSize,
@@ -150,7 +152,7 @@ class GameProfileHub extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const ChatScreen(chatId: 'default'),
+                            builder: (context) => const MessagesDashboard(),
                           ),
                         );
                       },
@@ -164,33 +166,55 @@ class GameProfileHub extends StatelessWidget {
                   SizedBox(
                     width: buttonSize,
                     height: buttonSize,
-                    child: _MenuButton(
-                      imagepath: 'assets/images/friends_icon.png',
-                      size: buttonSize,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MessagesDashboard(),
+                          ),
+                        );
+                      },
+                      child: _MenuButton(
+                        imagepath: 'assets/images/training_icon.png',
+                        size: buttonSize,
+                      ),
                     ),
                   ),
                   SizedBox(
                     width: buttonSize,
                     height: buttonSize,
-                    child: _MenuButton(
-                      imagepath: 'assets/images/training_icon.png',
-                      size: buttonSize,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MessagesDashboard(),
+                          ),
+                        );
+                      },
+                      child: _MenuButton(
+                        imagepath: 'assets/images/growth_icon.png',
+                        size: buttonSize,
+                      ),
                     ),
                   ),
                   SizedBox(
                     width: buttonSize,
                     height: buttonSize,
-                    child: _MenuButton(
-                      imagepath: 'assets/images/growth_icon.png',
-                      size: buttonSize,
-                    ),
-                  ),
-                  SizedBox(
-                    width: buttonSize,
-                    height: buttonSize,
-                    child: _MenuButton(
-                      imagepath: 'assets/images/shop_icon.png',
-                      size: buttonSize,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MessagesDashboard(),
+                          ),
+                        );
+                      },
+                      child: _MenuButton(
+                        imagepath: 'assets/images/shop_icon.png',
+                        size: buttonSize,
+                      ),
                     ),
                   ),
                 ],

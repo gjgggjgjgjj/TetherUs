@@ -3,6 +3,7 @@ import '../screens/kitchen.dart';
 import '../screens/outdoor.dart';
 import '../../models/pet_class.dart';
 import 'messages.dart';
+import '../screens/couple_message.dart';
 
 
 //first making milo
@@ -32,11 +33,7 @@ var outdoorDir = WidgetRedirecter(
   popup: (context) => const Outdoor(),
 );
 
-/*
-var messageDir = WidgetRedirecter(
-  imagepath: "assets/icons/message-icon.png", 
-  popup: (context) => const ChatScreen(
-    chatId: ,
-  ), //the widget 
+var messagesDir = WidgetRedirecter(
+  imagepath: 'assets/images/message-icon.png',
+  popup: (context) => const MessagesDashboard()
 );
-*/  //will fix this later

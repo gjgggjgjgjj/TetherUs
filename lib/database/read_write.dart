@@ -7,6 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 Future<bool> addUser(String uid) async{
   final docRef = FirebaseFirestore.instance.collection('users').doc(uid);
   final doc = await docRef.get();
+  final docfriend = FirebaseFirestore.instance.collection('friends').doc(uid);
 
   if (doc.exists) {
     // User already exists in Firestore
@@ -19,9 +20,18 @@ Future<bool> addUser(String uid) async{
     'createdAt': FieldValue.serverTimestamp(),
     'uid': uid,
     'username': "default",
-    'friends': [],
     'couple': null,
   });
+
+  //add new user id to friends and friend requests list
+  await docfriend.set({
+    'friends': [],
+    'friend_requests': {
+      'incoming': [],
+      'outgoing': [],
+    },
+  });
+
 
   return true;
 }

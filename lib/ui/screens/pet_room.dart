@@ -89,7 +89,7 @@ class _PetRoomState extends State<PetRoom> {
               final name = snapshot.connectionState == ConnectionState.done
                   ? (snapshot.data ?? 'Guest')
                   : 'Loading...';
-              return GameProfileHub(uid: name);
+              return GameProfileHub(username: name);
             },
           ),
           // Static centered Milo widget (ignores pointer to allow swipes through)

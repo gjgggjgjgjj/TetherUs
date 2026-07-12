@@ -10,8 +10,8 @@ class Pet {
     required this.imagePath});
 
   int happiness = 50;
-  int bathroom = 100;   //once it reaches a certain point buddy needs to go
-  int hunger = 100;  
+  int bathroom = 60;   //once it reaches a certain point buddy needs to go
+  int hunger = 25;  
   int energy = 100;
   int cleanliness = 100;
 
